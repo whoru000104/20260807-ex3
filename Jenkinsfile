@@ -12,33 +12,13 @@ pipeline {
             }
         }
 
-        stage('Install') {
-            steps {
-                script {
-                    if (isUnix()) {
-                        sh 'pip3 install pytest'
-                    } else {
-                        bat '''
-                        C:\\Python313\\python.exe --version
-                        C:\\Python313\\python.exe -m pip --version
-                        C:\\Python313\\python.exe -m pip install pytest
-                        '''
-                    }
-                }
-            }
-        }
-
         stage('Test') {
             steps {
-                script {
-                    if (isUnix()) {
-                        sh 'python3 -m pytest -v'
-                    } else {
-                        bat '''
-                        C:\\Python313\\python.exe -m pytest -v
-                        '''
-                    }
-                }
+                bat '''
+                C:\\Python313\\python.exe --version
+                C:\\Python313\\python.exe -m pytest --version
+                C:\\Python313\\python.exe -m pytest -v
+                '''
             }
         }
     }
